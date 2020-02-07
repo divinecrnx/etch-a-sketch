@@ -7,6 +7,22 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+
+    <style>
+    
+        .color{
+            width: 40px; 
+            background-color: #333; 
+            border-width: 2px; 
+            border-style: solid; 
+            border-color: black;
+        }
+
+        .etched{
+            background-color: green;
+        }
+    
+    </style>
     
     <script>
     
@@ -30,7 +46,7 @@
                 //sqChildDiv.textContent = "Test";
 
                 sqChildDiv.classList.add('color');
-                sqChildDiv.setAttribute("style", "width: 40px; background-color: #333; border-width: 2px; border-style: solid; border-color: black;");
+                //sqChildDiv.setAttribute("style", "");
 
                 rowdiv.appendChild(sqChildDiv);
 
@@ -39,6 +55,14 @@
             maindiv.appendChild(rowdiv);
 
         }
+
+        function etch(e){
+            e.target.classList.add("etched");
+        }
+
+        const square = Array.from(document.querySelectorAll('.color'));
+        square.forEach(square => square.addEventListener('mouseenter', etch));
+        //window.addEventListener('keydown', playSound);
         
     </script>
 
