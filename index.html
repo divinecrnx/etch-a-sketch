@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Etch-a-Sketch</title>
-</head>
-<body>
 
     <style>
     
         .color{
-            width: 40px; 
+            /*width: 40px; */
             background-color: #333; 
             border-width: 2px; 
             border-style: solid; 
@@ -21,48 +19,78 @@
         .etched{
             background-color: green;
         }
+
+        .prime{
+            width: 800px;
+            height: 800px;
+        }
     
     </style>
+
+</head>
+<body>
+
+    <button onclick=reset()>Reset</button>
     
     <script>
-    
-        const body = document.querySelector('body');
 
-        const maindiv = document.createElement('div');
+        generateGrid(16); // Generate default grid
 
-        body.appendChild(maindiv);
+        function reset(){
 
-        for (let a = 1; a <= 16; a++){ // Creates the div row
+            const body = document.querySelector('.prime');
+            
+            body.removeChild(body);
 
-            let rowdiv = document.createElement('div');
+            let newGridSize = prompt("Enter x amount of pixels for each side in the new grid? (x*x)");
 
-            rowdiv.classList.add('row');
-            rowdiv.setAttribute("style", "display: flex; height: 40px;");
+            generateGrid(newGridSize);
 
-            for (let b = 1; b <= 16; b++){ // Creates the div columns
+        }
 
-                const sqChildDiv = document.createElement('div');
+        function generateGrid(dimensions){
 
-                //sqChildDiv.textContent = "Test";
+            let pixelSize = 800 / dimensions;
+            
+            const body = document.querySelector('body');
 
-                sqChildDiv.classList.add('color');
-                //sqChildDiv.setAttribute("style", "");
+            const maindiv = document.createElement('div');
 
-                rowdiv.appendChild(sqChildDiv);
+            maindiv.classList.add("prime");
+
+            body.appendChild(maindiv);
+
+            for (let a = 1; a <= dimensions; a++){ // Creates the div row
+
+                let rowdiv = document.createElement('div');
+
+                rowdiv.classList.add('row');
+                rowdiv.setAttribute("style", "display: flex; height: " + pixelSize + "px;");
+
+                for (let b = 1; b <= 16; b++){ // Creates the div columns
+
+                    const sqChildDiv = document.createElement('div');
+
+                    sqChildDiv.classList.add('color');
+                    sqChildDiv.setAttribute("style", "width: " + pixelSize + "px;");
+
+                    rowdiv.appendChild(sqChildDiv);
+
+                }
+
+                maindiv.appendChild(rowdiv);
 
             }
 
-            maindiv.appendChild(rowdiv);
+            function etch(e){
+                e.target.classList.add("etched");
+            }
 
+            const square = Array.from(document.querySelectorAll('.color'));
+            square.forEach(square => square.addEventListener('mouseenter', etch));
         }
-
-        function etch(e){
-            e.target.classList.add("etched");
-        }
-
-        const square = Array.from(document.querySelectorAll('.color'));
-        square.forEach(square => square.addEventListener('mouseenter', etch));
-        //window.addEventListener('keydown', playSound);
+    
+        
         
     </script>
 
