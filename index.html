@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Etch-a-Sketch</title>
+</head>
+<body>
+    
+    <script>
+    
+        const body = document.querySelector('body');
+
+        const maindiv = document.createElement('div');
+
+        body.appendChild(maindiv);
+
+        for (let a = 1; a <= 16; a++){
+
+            for (let b = 1; b <= 16; b++){
+
+                const sqChildDiv = document.createElement('div');
+
+                sqChildDiv.textContent = "Test";
+
+                sqChildDiv.classList.add('color');
+
+                body.appendChild(sqChildDiv);
+
+            }
+
+        }
+        
+    </script>
+
+</body>
+</html>
