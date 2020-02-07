@@ -16,19 +16,27 @@
 
         body.appendChild(maindiv);
 
-        for (let a = 1; a <= 16; a++){
+        for (let a = 1; a <= 16; a++){ // Creates the div row
 
-            for (let b = 1; b <= 16; b++){
+            let rowdiv = document.createElement('div');
+
+            rowdiv.classList.add('row');
+            rowdiv.setAttribute("style", "display: flex; height: 40px;");
+
+            for (let b = 1; b <= 16; b++){ // Creates the div columns
 
                 const sqChildDiv = document.createElement('div');
 
-                sqChildDiv.textContent = "Test";
+                //sqChildDiv.textContent = "Test";
 
                 sqChildDiv.classList.add('color');
+                sqChildDiv.setAttribute("style", "width: 40px; background-color: #333; border-width: 2px; border-style: solid; border-color: black;");
 
-                body.appendChild(sqChildDiv);
+                rowdiv.appendChild(sqChildDiv);
 
             }
+
+            maindiv.appendChild(rowdiv);
 
         }
         
