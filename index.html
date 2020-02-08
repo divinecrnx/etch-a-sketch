@@ -38,9 +38,11 @@
 
         function reset(){
 
-            const body = document.querySelector('.prime');
+            const body = document.querySelector('body');
+
+            const divPrime = document.querySelector('.prime');
             
-            body.removeChild(body);
+            body.removeChild(divPrime);
 
             let newGridSize = prompt("Enter x amount of pixels for each side in the new grid? (x*x)");
 
