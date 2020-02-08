@@ -11,19 +11,19 @@
         .color{
             /*width: 40px; */
             background-color: #333; 
-            border-width: 2px; 
+            /*border-width: 2px; 
             border-style: solid; 
-            border-color: black;
+            border-color: black;*/
         }
 
         .etched{
             background-color: green;
         }
 
-        .prime{
+        /*.prime{
             width: 800px;
             height: 800px;
-        }
+        }*/
     
     </style>
 
@@ -33,6 +33,8 @@
     <button onclick=reset()>Reset</button>
     
     <script>
+
+        const dimensions = 700;
 
         generateGrid(16); // Generate default grid
 
@@ -50,31 +52,36 @@
 
         }
 
-        function generateGrid(dimensions){
+        function generateGrid(sides){
 
-            let pixelSize = 800 / dimensions;
+            let pixelSize = (dimensions / sides);
             
             const body = document.querySelector('body');
 
             const maindiv = document.createElement('div');
 
             maindiv.classList.add("prime");
+            maindiv.style.width = `${dimensions}px`;
+            maindiv.style.height = `${dimensions}px`;
 
             body.appendChild(maindiv);
 
-            for (let a = 1; a <= dimensions; a++){ // Creates the div row
+            for (let a = 1; a <= sides; a++){ // Creates the div row
 
                 let rowdiv = document.createElement('div');
 
                 rowdiv.classList.add('row');
-                rowdiv.setAttribute("style", "display: flex; height: " + pixelSize + "px;");
+                rowdiv.setAttribute("style", "display: flex;"); //height: " + pixelSize + "px;");
+                //rowdiv.style.height = `${pixelSize}px`;
 
-                for (let b = 1; b <= 16; b++){ // Creates the div columns
+                for (let b = 1; b <= sides; b++){ // Creates the div columns
 
                     const sqChildDiv = document.createElement('div');
 
                     sqChildDiv.classList.add('color');
-                    sqChildDiv.setAttribute("style", "width: " + pixelSize + "px;");
+                    //sqChildDiv.setAttribute("style", "width: " + pixelSize + "px;");
+                    sqChildDiv.style.height = `${pixelSize}px`;
+                    sqChildDiv.style.width = `${pixelSize}px`;
 
                     rowdiv.appendChild(sqChildDiv);
 
@@ -88,6 +95,7 @@
                 e.target.classList.add("etched");
             }
 
+            // Mouse hover event that changes the color of the squares
             const square = Array.from(document.querySelectorAll('.color'));
             square.forEach(square => square.addEventListener('mouseenter', etch));
         }
